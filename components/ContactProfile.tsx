@@ -1,24 +1,19 @@
 import { router } from 'expo-router';
 import React from 'react';
-import {
-    Linking,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import { Linking, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 type Props = {
     id: string;
-    nombre: string;
-    telefono: string;
+    name: string;
+    phone: string;
     email: string;
+    empresa: string;
 };
 
-export default function ContactProfile({ nombre, telefono, email }: Props) {
+export default function ContactProfile({ name, phone, email }: Props) {
 
     const llamarContacto = () => {
-        Linking.openURL(`tel:${telefono}`);
+        Linking.openURL(`tel:${phone}`);
     };
 
     const enviarEmail = () => {
@@ -29,15 +24,15 @@ export default function ContactProfile({ nombre, telefono, email }: Props) {
         <View style={styles.container}>
         <View style={styles.avatarGrande}>
             <Text style={styles.inicialesGrandes}>
-            {nombre.split(' ').map(n => n[0]).join('')}
+            {name.split(' ').map(n => n[0]).join('')}
             </Text>
         </View>
 
-        <Text style={styles.nombre}>{nombre}</Text>
+        <Text style={styles.name}>{name}</Text>
 
         <View style={styles.tarjetaInfo}>
             <Text style={styles.etiqueta}>Teléfono</Text>
-            <Text style={styles.valor}>{telefono}</Text>
+            <Text style={styles.valor}>{phone}</Text>
         </View>
 
         <View style={styles.tarjetaInfo}>
@@ -93,7 +88,7 @@ const styles = StyleSheet.create({
         color: '#FFFFFF',
     },
 
-    nombre: {
+    name: {
         fontSize: 26,
         fontWeight: 'bold',
         textAlign: 'center',

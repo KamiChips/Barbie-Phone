@@ -2,14 +2,15 @@ import ContactProfile from '@/components/ContactProfile';
 import { useLocalSearchParams } from 'expo-router';
 
 export default function ContactProfileScreen() {
-    const { id, nombre, telefono, email } = useLocalSearchParams();
+    const { id, name, phone, email, empresa } = useLocalSearchParams();
 
     return (
         <ContactProfile
             id={id as string}
-            nombre={nombre as string}
-            telefono={telefono as string}
+            name={name as string}
+            phone={phone as string}
             email={email as string}
+            empresa={empresa as string}
         />
     );
 }

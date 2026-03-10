@@ -1,15 +1,17 @@
-import React, { useState } from "react";
 import { mockContacts } from "@/utils/mocks";
-import { 
-  View, 
-  FlatList, 
-  Text, 
-  StatusBar, 
-  SafeAreaView, 
-  TextInput, 
-  StyleSheet 
+import { router, Stack } from "expo-router";
+import React, { useState } from "react";
+
+import {
+  FlatList,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from "react-native";
-import { Stack } from "expo-router";
 
 interface Contacto {
   id: number;
@@ -24,22 +26,37 @@ interface ContactoItemProps {
 }
 
 const ContactoItem = React.memo(({ item }: ContactoItemProps) => (
-  <View style={styles.itemContainer}>
-    {/* Avatar / Iniciales */}
-    <View style={styles.avatar}>
-      <Text style={styles.avatarText}>
-        {item.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
-      </Text>
-    </View>
+  <TouchableOpacity
+    onPress={() => {
+        router.push({
+          pathname: "/ContactProfileScreen",
+          params: { 
+            id: item.id, 
+            name: item.name, 
+            phone: item.phone, 
+            email: item.email, 
+            empresa: item.empresa 
+          }
+        });
+    }}
+  >
+    <View style={styles.itemContainer}>
+      {/* Avatar / Iniciales */}
+      <View style={styles.avatar}>
+        <Text style={styles.avatarText}>
+          {item.name.split(" ").map(n => n[0]).join("").slice(0, 2)}
+        </Text>
+      </View>
 
-    {/* Información */}
-    <View style={styles.infoContainer}>
-      <Text style={styles.nameText}>{item.name}</Text>
-      <Text style={styles.empresaText}>{item.empresa}</Text>
-      <Text style={styles.detailText}>{item.phone}</Text>
-      <Text style={styles.detailText}>{item.email}</Text>
+      {/* Información */}
+      <View style={styles.infoContainer}>
+        <Text style={styles.nameText}>{item.name}</Text>
+        <Text style={styles.empresaText}>{item.empresa}</Text>
+        <Text style={styles.detailText}>{item.phone}</Text>
+        <Text style={styles.detailText}>{item.email}</Text>
+      </View>
     </View>
-  </View>
+  </TouchableOpacity>
 ));
 
 export default function ContactList() {
