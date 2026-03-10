@@ -6,6 +6,7 @@ import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { Link } from 'expo-router';
+import { Pressable } from 'react-native';
 
 export default function HomeScreen() {
   return (
@@ -36,6 +37,7 @@ export default function HomeScreen() {
           to open developer tools.
         </ThemedText>
       </ThemedView>
+
       <ThemedView style={styles.stepContainer}>
         <Link href="/modal">
           <Link.Trigger>
@@ -74,6 +76,16 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold">app-example</ThemedText>.
         </ThemedText>
       </ThemedView>
+
+      <ThemedView style={styles.stepContainer}>
+        <Link href="/contactList" asChild>
+          <Pressable style={styles.button}>
+            <ThemedText type="defaultSemiBold" style={{ color: '#000' }}>
+              Ver Contactos
+            </ThemedText>
+          </Pressable>
+        </Link>
+      </ThemedView>
     </ParallaxScrollView>
   );
 }
@@ -94,5 +106,12 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     position: 'absolute',
+  },
+  button: {
+    backgroundColor: '#ff69b4',
+    padding: 15,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 10,
   },
 });
